@@ -1,0 +1,19 @@
+#room_id{
+    width: 100%;
+    height: 30px;
+    /*background-color: inherit;*/
+}
+
+#roomDiv{
+
+    padding-right: 3px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#title{
+    margin-top: 130px;
+    font-weight: 600;
+}

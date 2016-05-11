@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>酒店预订系统</title>
+
+    <!-- For-Mobile-Apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="css/jquery-ui.css"/>
+    <!--<link href="assert/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="assert/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assert/css/sweetalert.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+</head>
+<body>
+
+<h1 class="book">酒店预订系统</h1>
+
+<div class="reg">
+
+    <h1>预定信息</h1>
+
+    <div class="members">
+        <div class="adult">
+            <h2>入住人数</h2>
+            <div class="dropdown-button">
+                <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
+                    <option value="">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+    <div class="suite">
+        <div class="dropdown-button">
+            <h2>房间类型</h2>
+            <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
+                <option value="1">-</option>
+                <option value="1">单人间</option>
+                <option value="2">大床房</option>
+                <option value="2">标准件</option>
+                <option value="2">麻将房</option>
+                <option value="3">特价房</option>
+                <option value="4">商务房</option>
+                <option value="4">豪华套房</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="book-pag">
+        <h2>租住时间</h2>
+        <div class="book-pag-frm1">
+            <label>入住时间</label>
+            <input class="date" id="datepicker1" type="text" value="Date" onfocus="this.value = '';"
+                   onblur="if (this.value == '') {this.value = '';}" required="">
+        </div>
+        <div class="book-pag-frm2">
+            <label>退房时间</label>
+            <input class="date" id="datepicker2" type="text" value="Date" onfocus="this.value = '';"
+                   onblur="if (this.value == '') {this.value = '';}" required="">
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <!--Date Picker-->
+
+    <script src="js/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker,#datepicker1,#datepicker2").datepicker();
+        });
+    </script>
+    <!--//Date Picker-->
+
+    <div class="submit" onclick="rent()">
+        <input type="submit" class="book" value="提交订单">
+    </div>
+
+</div>
+
+<div class="reg-footer">
+    <p></p>
+</div>
+
+<script src="assert/js/bootstrap.min.js"></script>
+<script src="assert/js/sweetalert.min.js"></script>
+<script src="js/site.booking.js"></script>
+</body>
+</html>
