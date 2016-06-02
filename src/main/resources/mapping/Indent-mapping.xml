@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trows.hotel.entity.Indent">
+
+    <insert id="initIndent" parameterType="Indent" useGeneratedKeys="true" keyProperty="indent_id">
+        INSERT IGNORE INTO indent (room_id,user_name,id_card,cellphone,num,start_time,end_time,room_price,indent_state,id_key,flag)
+        VALUES (#{room_id},#{user_name},#{id_card},#{cellphone},#{num},#{start_time},#{end_time},#{room_price},#{indent_state},#{id_key},
+        #{flag})
+    </insert>
+
+    <select id="getIndentByKey" parameterType="Integer" resultType="Indent">
+        SELECT * FROM indent WHERE indent_id = #{indent_id} limit 1
+    </select>
+
+    <select id="getIndentByRoom" parameterType="String" resultType="Indent">
+        SELECT * FROM indent WHERE room_id = #{room_id} AND indent_state = #{indent_state} limit 1
+    </select>
+
+    <update id="settleAccount" parameterType="Indent">
+        UPDATE IGNORE indent SET flag = 0,other_price=#{other_price},indent_state = 'out' WHERE indent_id = #{indent_id}
+    </update>
+
+    <select id="getIndentById" parameterType="Indent" resultType="Indent">
+        SELECT * FROM indent WHERE indent_id = #{indent_id} AND id_key = #{id_key} limit 1
+    </select>
+
+    <update id="booking_in" parameterType="Indent">
+        UPDATE IGNORE indent SET indent_state = 'check_in'  WHERE indent_id = #{indent_id} AND id_key = #{id_key}
+    </update>
+
+    <delete id="delIndent" parameterType="Indent">
+        DELETE FROM indent WHERE indent_id = #{indent_id} AND id_key = #{id_key} AND indent_state = 'booking'
+    </delete>
+
+</mapper>

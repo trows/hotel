@@ -394,10 +394,6 @@ input#datepicker, input#datepicker1, input#datepicker2 {
     width: 100%;
 }
 
-input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
-    line-height: 0px;
-}
-
 .reservation-left h3 {
     color: #DF1E1C;
     font-size: 25px;

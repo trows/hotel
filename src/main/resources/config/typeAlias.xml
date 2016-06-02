@@ -4,6 +4,9 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.trows.hotel.entity.Account" alias="Account"/>
+        <typeAlias type="com.trows.hotel.entity.Room" alias="Room"/>
+        <typeAlias type="com.trows.hotel.entity.Indent" alias="Indent"/>
+        <typeAlias type="com.trows.hotel.entity.Service" alias="Service"/>
 
     </typeAliases>
 </configuration>

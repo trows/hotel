@@ -1,7 +1,16 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>开房管理</title>
+    <base href="<%=basePath%>">
+    <meta charset="UTF-8">
+    <title>房间预订</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all"/>
@@ -13,20 +22,15 @@
 
 </head>
 <body>
-<h1 class="book">酒店开房管理</h1>
+<h1 class="book">订单号：${indent.indent_id}${indent.id_key}</h1>
 <div class="reg">
-    <h1>房间号码：<span id="room_id">请先选择房间类型及时间</span></h1>
+    <h1>房间号码：<span id="room_id">${indent.room_id}</span></h1>
     <div class="members">
         <div class="adult">
             <h2>入住人数</h2>
             <div class="dropdown-button">
                 <select class="dropdown" tabindex="10" id="num">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="${indent.num}" selected>${indent.num}</option>
                 </select>
             </div>
         </div>
@@ -37,41 +41,39 @@
         <div class="dropdown-button">
             <h2>房间类型</h2>
             <select class="dropdown" tabindex="10" id="room_type">
-                <option value="1">-</option>
-                <option value="大床房">大床房</option>
-                <option value="标准间">标准间</option>
-                <option value="麻将房">麻将房</option>
-                <option value="商务房">商务房</option>
+                <option value="${room.room_type}" selected>${room.room_type}</option>
             </select>
         </div>
     </div>
 
-        <h2>&nbsp;姓名</h2>
-        <input class="roomInput" type="text" id="user_name" placeholder="开房者姓名">
+    <h2>&nbsp;姓名</h2>
+    <input class="roomInput" type="text" id="user_name" value="${indent.user_name}" disabled="disabled">
 
-        <h2>&nbsp;身份证号</h2>
-        <input class="roomInput" type="text" id="id_card" placeholder="开房者身份证号">
+    <h2>&nbsp;身份证号</h2>
+    <input class="roomInput" type="text" id="id_card" value="${indent.id_card}" disabled="disabled">
 
-        <h2>&nbsp;手机号</h2>
-        <input class="roomInput" type="text" id="cellphone" placeholder="开房者联系方式">
+    <h2>&nbsp;手机号</h2>
+    <input class="roomInput" type="text" id="cellphone" value="${indent.cellphone}" disabled="disabled">
 
     <div class="book-pag">
         <h2>租住时间</h2>
         <div class="book-pag-frm1">
             <label>入住时间</label>
-            <input type="date" id="start_time" class="roomInput">
+            <input  id="start_time" class="roomInput" value="${indent.start_time}" disabled="disabled">
         </div>
         <div class="book-pag-frm2">
             <label>退房时间</label>
-            <input type="date" id="end_time" class="roomInput" onblur="getEmptyRoom(this)">
+            <input  id="end_time" class="roomInput" value="${indent.end_time}" disabled="disabled">
         </div>
         <div class="clear"></div>
     </div>
 
-    <div class="submit" onclick="rent()">
-        <input type="submit" class="book" value="确认开房">
+    <div class="book-pag-frm1">
+        <input type="submit" class="book" value="确认入住" onclick="check_in()">
     </div>
-
+    <div class="book-pag-frm2">
+        <input type="submit" class="book" value="取消订单" onclick="del_indent()">
+    </div>
 </div>
 
 <div class="reg-footer">
@@ -80,6 +82,6 @@
 <script type="text/javascript" src="assert/js/jquery-2.2.3.min.js"></script>
 <script src="assert/js/bootstrap.min.js"></script>
 <script src="assert/js/sweetalert.min.js"></script>
-<script src="js/site.rent.js"></script>
+<script src="js/site.indent_info.js"></script>
 </body>
 </html>

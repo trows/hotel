@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.trows.hotel.entity.Room">
+
+    <select id="initRoom" parameterType="String" resultType="Room">
+        SELECT * FROM room
+    </select>
+
+    <select id="getRoomType" parameterType="String" resultType="Room">
+        SELECT room_type FROM room GROUP BY room_type;
+    </select>
+
+    <select id="getRoomByKey" parameterType="String" resultType="Room">
+        SELECT * FROM room WHERE room_id = #{room_id} limit 1
+    </select>
+
+    <update id="setFlag" parameterType="Room">
+        UPDATE IGNORE room SET flag = #{flag} WHERE room_id = #{room_id}
+    </update>
+
+    <insert id="insertRoom" parameterType="Room">
+        INSERT IGNORE INTO room (room_id,room_type,room_price) VALUES
+        (#{room_id},#{room_type},#{room_price})
+    </insert>
+
+    <update id="resetRoom" parameterType="Room">
+        UPDATE IGNORE room SET flag = flag+#{flag} WHERE room_id = #{room_id}
+    </update>
+
+</mapper>

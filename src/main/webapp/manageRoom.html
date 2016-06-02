@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>添加房间</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="css/jquery-ui.css"/>
+    <!--<link href="assert/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="assert/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assert/css/sweetalert.css" rel="stylesheet">
+    <link href="/css/site.input_base.css" rel="stylesheet">
+
+</head>
+<body>
+<h1 class="book">房间信息录入</h1>
+<div class="reg">
+    <h2>&nbsp;房间编号</h2>
+    <input class="roomInput" type="text" id="room_id" placeholder="房间编号">
+
+    <div class="suite">
+        <div class="dropdown-button">
+            <h2>房间类型</h2>
+            <select class="dropdown" tabindex="10" id="room_type">
+                <option value="1">-</option>
+                <option value="大床房">大床房</option>
+                <option value="标准间">标准间</option>
+                <option value="麻将房">麻将房</option>
+                <option value="商务房">商务房</option>
+            </select>
+        </div>
+    </div>
+
+    <h2>&nbsp;价格</h2>
+    <input class="roomInput" type="text" id="room_price" placeholder="房间价格">
+
+
+
+    <div class="submit" onclick="insertRoom()">
+        <input type="submit" class="book" value="添加房间信息">
+    </div>
+
+</div>
+
+<div class="reg-footer">
+    <p></p>
+</div>
+<script type="text/javascript" src="assert/js/jquery-2.2.3.min.js"></script>
+<script src="assert/js/bootstrap.min.js"></script>
+<script src="assert/js/sweetalert.min.js"></script>
+<script src="js/site.manageRoom.js"></script>
+</body>
+</html>

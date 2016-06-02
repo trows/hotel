@@ -1,0 +1,14 @@
+.roomInput{
+    margin-left: 2%;
+    width: 95%;
+    height: 30px;
+    /*background-color: inherit;*/
+}
+
+.info{
+    padding-right: 3px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
