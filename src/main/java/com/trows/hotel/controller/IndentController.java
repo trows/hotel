@@ -74,7 +74,7 @@ public class IndentController {
         indent.setRoom_id(request.getParameter("room_id"));
         indent.setIndent_state("check_in");
         indent = indentService.getEntityByValue(indent,"getIndentByRoom");
-        if (indent.getIndent_id()>10000){
+        if (indent!=null && indent.getIndent_id()>10000){
             request.setAttribute("indent",indent);
             return "/settleAccounts";
         }
