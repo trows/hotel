@@ -22,7 +22,7 @@
 
 </head>
 <body>
-<h1 class="book">订单号：${indent.indent_id}${indent.id_key}</h1>
+<h1 class="book">订单号：${indent.indent_id}${indent.id_key}<a class="ret" href="index.html">返回首页</a></h1>
 <div class="reg">
     <h1>房间号码：<span id="room_id">${indent.room_id}</span></h1>
     <div class="members">

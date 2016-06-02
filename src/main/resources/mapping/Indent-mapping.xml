@@ -34,4 +34,12 @@
         DELETE FROM indent WHERE indent_id = #{indent_id} AND id_key = #{id_key} AND indent_state = 'booking'
     </delete>
 
+    <select id="getCheck_inRoomByKey"  parameterType="String" resultType="Indent">
+        SELECT * FROM indent WHERE  room_id = #{room_id} AND indent_state = 'check_in' limit 1
+    </select>
+
+    <update id="setServiceList" parameterType="Indent">
+        UPDATE IGNORE indent SET service_list = #{service_list} WHERE indent_id = #{indent_id}
+    </update>
+
 </mapper>

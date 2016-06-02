@@ -1,11 +1,14 @@
 package com.trows.hotel.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.trows.hotel.common.util.HotelMap;
 import com.trows.hotel.entity.Indent;
 import com.trows.hotel.entity.Room;
+import com.trows.hotel.entity.Service;
 import com.trows.hotel.service.IndentService;
 import com.trows.hotel.service.RoomService;
+import com.trows.hotel.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -29,6 +33,8 @@ public class IndentController {
     private RoomService roomService;
     @Autowired
     private HotelMap hotelMap;
+    @Autowired
+    private ServiceService serviceService;
 
     private void print(HttpServletResponse response, String value) {
         try {
@@ -75,6 +81,17 @@ public class IndentController {
         indent.setIndent_state("check_in");
         indent = indentService.getEntityByValue(indent,"getIndentByRoom");
         if (indent!=null && indent.getIndent_id()>10000){
+
+            String sev = indent.getService_list();
+            if(!"".equals(sev)){
+                float other_price = 0;
+                JSONObject service = JSON.parseObject(sev);
+                for (Map.Entry<String, Object> entry : service.entrySet()) {
+                 other_price+=(serviceService.getEntityByStr(entry.getKey(),"getPriceByName").getPrice()*(Integer)entry.getValue());
+                }
+                indent.setService_price(other_price);
+            }
+
             request.setAttribute("indent",indent);
             return "/settleAccounts";
         }
@@ -84,7 +101,18 @@ public class IndentController {
     @RequestMapping("/settleAccount.do")
     public void settleAccount(HttpServletRequest request,HttpServletResponse response){
         int indent_id = Integer.parseInt(request.getParameter("indent_id"));
-        float other_price = Float.parseFloat(request.getParameter("other_price"));
+
+        float other_price = 0;
+        String str = request.getParameter("other_price");
+        try {
+            if(str!=null && !"".equals("")){
+                other_price = Float.parseFloat(request.getParameter("other_price"));
+            }
+        }catch (Exception e){
+            other_price = 0;
+        }
+
+
         Indent indent = indentService.getEntityByKey(indent_id,"getIndentByKey");
         indent.setOther_price(other_price);
         Room room = new Room();
@@ -153,5 +181,16 @@ public class IndentController {
 
         }
     }
+
+    @RequestMapping("/check_room.do")
+    public void check_room(@RequestParam("room_id") String room_id,HttpServletResponse response){
+        if (indentService.getEntityByStr(room_id,"getCheck_inRoomByKey") == null){
+            this.print(response,0);
+        }else {
+            this.print(response,1);
+        }
+    }
+
+
 
 }

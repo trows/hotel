@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>退房管理</title>
+    <title>校验入住</title>
 
     <!-- For-Mobile-Apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -17,25 +17,22 @@
 </head>
 <body>
 
-<h1 id="title">退房管理<a class="ret" href="index.html">返回首页</a></h1>
+<h1 id="title">客房服务<a class="ret" href="index.html">返回首页</a></h1>
 
 <div class="hotel">
 
     <ul class="menu">
         <li class="item1">
             <div id="roomDiv">
-                <input id="room_id" type="text" placeholder="请输入房间号码">
+                <input id="room_id" type="text" placeholder="房号">
             </div>
             <ul class="cute">
-                <li class="subitem2"><a href="#" onclick="checkOut()">退房</a></li>
+                <li class="subitem2"><a href="#" onclick="check_service()">服务</a></li>
             </ul>
         </li>
     </ul>
 </div>
 
-<form action="./getMyBill.htm" method="post" id="subForm">
-    <input type="hidden" id="room" name="room_id">
-</form>
 
 <div class="footer">
     <p></p>
@@ -44,6 +41,6 @@
 <script src="assert/js/jquery-2.2.3.min.js"></script>
 <script src="assert/js/bootstrap.min.js"></script>
 <script src="assert/js/sweetalert.min.js"></script>
-<script src="js/site.check_out.js"></script>
+<script src="js/site.hotel_service.js"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 </head>
 <body>
-<h1 class="book">订单编号：<span id="indent_id">${indent.indent_id}</span>${indent.id_key}</h1>
+<h1 class="book">订单编号：<span id="indent_id">${indent.indent_id}</span>${indent.id_key}<a class="ret" href="index.html">返回首页</a></h1>
 <div class="reg">
     <h1>房间号码：<span id="room_id">${indent.room_id}</span>&nbsp;/&nbsp;住户：${indent.user_name}</h1>
     <h2>&nbsp;租住天数</h2>
@@ -36,11 +36,11 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <h2>&nbsp;其它消费</h2>
     <input class="roomInput" type="text" id="other_price" value="" onblur="countAccount()">
     <h2>&nbsp;总计</h2>
-    <input class="roomInput" type="text" id="count" value="￥${indent.room_price*indent.num+indent.other_price}" disabled="disabled">
+    <input class="roomInput" type="text" id="count" value="￥${indent.room_price*indent.num+indent.other_price+indent.service_price}" disabled="disabled">
     <div class="submit" onclick="settleAccount()">
         <input type="submit" class="book" value="确认结账">
     </div>
-<input type="hidden" id="storeCount" value="${indent.room_price*indent.num+indent.other_price}">
+<input type="hidden" id="storeCount" value="${indent.room_price*indent.num+indent.other_price+indent.service_price}">
 </div>
 
 <div class="reg-footer">

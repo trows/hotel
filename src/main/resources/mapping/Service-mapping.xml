@@ -3,7 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.trows.hotel.entity.Service">
+    <select id="getAllService" resultType="Service">
+      SELECT * FROM service
+    </select>
 
-    
-
+    <select id="getPriceByName" parameterType="String" resultType="Service">
+        SELECT price FROM service WHERE service_name = #{service_name} limit 1
+    </select>
 </mapper>
